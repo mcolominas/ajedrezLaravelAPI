@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Api\Ajedrez\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\Api\Ajedrez\Master;
+use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
 
-class UsuariosController extends Master
+class UsuariosController extends Controller
 {
     function login(Request $request){
     	$password = $request->input('password');
     	$email = $request->input('email');
 
     	if (Auth::attempt(['email' => $email, 'password' => $password])){
-	    	$token = $this->generateToken();
+	    	$token = User::getNewToken();
 	    	if(User::where([['id', Auth::id()], ['token', null]])->update(array('token' => $token))){
 	    		$status = 1;
 	    	}else{
@@ -24,7 +24,6 @@ class UsuariosController extends Master
 	    		else
 	    			$mensaje = "Esta cuenta ya esta logeada, se ha intentado forzar el cierre de session, pero ha fallado, intentelo de nuevo.";
 	    	}
-            
         }else{
         	$status = 0;
 	    	$mensaje = "Email o contraseña incorrecta";
@@ -44,7 +43,7 @@ class UsuariosController extends Master
 
 
     function verConectados(Request $request){
-        $id_usuario = $this->getIdUserFromToken($request->input('token'));
+        $id_usuario = User::getIdUserFromToken($request->input('token'));
         $status = 0;
         if($id_usuario != false){
             $status = 1;
@@ -62,13 +61,5 @@ class UsuariosController extends Master
             return response(json_encode(["status" => $status, "usernames" => $usernames]), 200)->header('Content-Type', 'application/json');
         else
             return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json');
-    }
-
-    private function generateToken(){
-    	do{
-    		$token = md5(uniqid(rand(), true));
-    	}while(User::where("token", $token)->count() >= 1);
-
-    	return $token;
     }
 }

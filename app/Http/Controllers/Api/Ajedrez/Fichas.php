@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Ajedrez;
 
 class Fichas{
-	static final function getFichas(){
+	public static final function getFichas(){
 		return [
             ["color" => "b", "ficha" => "peon", "fila" => 2, "columna" => 1],
             ["color" => "b", "ficha" => "peon", "fila" => 2, "columna" => 2],
@@ -30,7 +30,7 @@ class Fichas{
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 6],
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 7],
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 8],
-            ["color" => "n", "ficha" => "torre", "fila" => 8, "columna" => 8],
+            ["color" => "n", "ficha" => "torre", "fila" => 8, "columna" => 1],
             ["color" => "n", "ficha" => "torre", "fila" => 8, "columna" => 8],
             ["color" => "n", "ficha" => "caballo", "fila" => 8, "columna" => 2],
             ["color" => "n", "ficha" => "caballo", "fila" => 8, "columna" => 7],
