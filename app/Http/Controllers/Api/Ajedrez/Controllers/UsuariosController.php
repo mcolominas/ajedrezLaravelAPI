@@ -30,9 +30,9 @@ class UsuariosController extends Controller
         }
 
         if($status)
-        	return response(json_encode(["status" => $status, "token" => $token]), 200)->header('Content-Type', 'application/json');
+        	return response(json_encode(["status" => $status, "token" => $token]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     	else
-    		return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json');
+    		return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 
     function logout(Request $request){
