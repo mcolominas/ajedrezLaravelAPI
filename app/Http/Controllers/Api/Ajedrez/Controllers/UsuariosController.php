@@ -38,7 +38,7 @@ class UsuariosController extends Controller
     function logout(Request $request){
     	$token = $request->input('token');
     	$status = User::where('token', $token)->update(array('token' => null)) ? 1 : 0;
-    	return response(json_encode(["status" => $status]), 200)->header('Content-Type', 'application/json');
+    	return response(json_encode(["status" => $status]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 
 
@@ -58,8 +58,8 @@ class UsuariosController extends Controller
         }else $mensaje="No se ha podido obtener el usuario";
 
         if($status)
-            return response(json_encode(["status" => $status, "usernames" => $usernames]), 200)->header('Content-Type', 'application/json');
+            return response(json_encode(["status" => $status, "usernames" => $usernames]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
         else
-            return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json');
+            return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 }

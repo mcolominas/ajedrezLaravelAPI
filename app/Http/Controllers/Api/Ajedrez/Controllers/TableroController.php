@@ -27,9 +27,9 @@ class TableroController extends Controller
         }else $mensaje="No se ha podido obtener el usuario";
         
         if($status)
-            return response(json_encode(["status" => $status, "tablero" => $fichas]), 200)->header('Content-Type', 'application/json');
+            return response(json_encode(["status" => $status, "tablero" => $fichas]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
         else
-            return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json');
+            return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 
     function moverFicha(Request $request){
@@ -91,6 +91,6 @@ class TableroController extends Controller
             }else $mensaje = "No se ha encontrado la partida.";
         }else $mensaje="No se ha podido obtener el usuario";
         
-        return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json');
+        return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 }

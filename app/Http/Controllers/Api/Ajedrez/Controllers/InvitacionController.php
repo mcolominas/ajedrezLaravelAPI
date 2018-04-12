@@ -24,7 +24,7 @@ class InvitacionController extends Controller
 		    	$mensaje="Se ha enviado una peticion para jugar.";
     		}else $mensaje="Esperando a que el usuario acepta la peticion";
     	}else $mensaje="No se ha podido obtener el usuario";
-    	return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200);
+    	return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Access-Control-Allow-Origin', '*');
     }
 
     function ver(Request $request){
@@ -44,7 +44,7 @@ class InvitacionController extends Controller
 
     	}else $mensaje="No se ha podido obtener el usuario";
 
-    	return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200);
+    	return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Access-Control-Allow-Origin', '*');
     }
 
     function responder(Request $request){
@@ -70,7 +70,7 @@ class InvitacionController extends Controller
             }else $mensaje = "Respuesta no valida.";
         }else $mensaje="No se ha podido obtener el usuario";
         
-        return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200);
+        return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Access-Control-Allow-Origin', '*');
     }
 
     private function generarTablero($idPartida){
