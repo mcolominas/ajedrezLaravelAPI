@@ -32,6 +32,30 @@ class TableroController extends Controller
             return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
     }
 
+    function contrincantes(Request $request){
+        $userID1 = User::getIdUserFromToken($request->input('token'));
+
+        $status = 0;
+
+        if($userID1 != false){
+            $status = 1;
+            $listaID1 = Partida::select("id_jugador_blanco as id")->where("id_jugador_negro", $userID1)->get()->toArray();
+            $listaID2 =Partida::select("id_jugador_negro as id")->where("id_jugador_blanco", $userID1)->get()->toArray();
+            $listaIDs = array_merge($listaID1, $listaID2);
+
+            $mensaje = [];
+            foreach ($listaIDs as $value) {
+                $name = User::select("name")->where("id", $value['id'])->first()->toArray();
+                $mensaje[] = $name;
+            }
+
+            
+        }else $mensaje="No se ha podido obtener el usuario";
+
+        return response(json_encode(["status" => $status, "mensaje" => $mensaje]), 200)->header('Content-Type', 'application/json')->header('Access-Control-Allow-Origin', '*');
+
+    }
+
     function moverFicha(Request $request){
         $userID1 = User::getIdUserFromToken($request->input('token'));
         $userID2 = User::getIdUserFromName($request->input('name'));
