@@ -42,7 +42,7 @@ class Movimientos{
 		return true;	
 	}
 	private static function torre(Ficha $ficha, $to){
-		return true;	
+        return ($ficha->fila != $to['fila'] && $ficha->columna == $to['columna']) || ($ficha->fila == $to['fila'] && $ficha->columna != $to['columna']);
 	}
 	private static function caballo(Ficha $ficha, $to){
 		return true;	

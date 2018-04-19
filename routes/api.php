@@ -27,6 +27,7 @@ Route::get('/invitacion/ver', $path.'InvitacionController@ver');
 Route::get('/invitacion/responder', $path.'InvitacionController@responder');
 
 Route::get('/tablero/ver', $path.'TableroController@ver');
+Route::get('/tablero/info', $path.'TableroController@info');
 Route::get('/tablero/contrincantes', $path.'TableroController@contrincantes');
 Route::get('/tablero/mover', $path.'TableroController@moverFicha');
 
@@ -43,6 +44,7 @@ Route::get('/tablero/mover', $path.'TableroController@moverFicha');
 |	responder -> params: token, name, respuesta (0,1)
 |
 |	ver -> params: token, name
+|	info -> params: token, name
 |	contrincantes -> params: token
 |	mover -> params: token, name, toFila, toColumna, fromFila, fromColumna
 |

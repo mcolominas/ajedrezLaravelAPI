@@ -23,7 +23,7 @@ class Fichas{
             ["color" => "b", "ficha" => "rey", "fila" => 1, "columna" => 5],
 
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 1],
-            ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 7],
+            ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 2],
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 3],
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 4],
             ["color" => "n", "ficha" => "peon", "fila" => 7, "columna" => 5],
